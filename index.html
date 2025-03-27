@@ -34,11 +34,24 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
+            background: linear-gradient(135deg, rgba(10,37,64,0.8), rgba(10,25,41,0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgb(10,37,64);stop-opacity:1" /><stop offset="100%" style="stop-color:rgb(10,25,41);stop-opacity:1" /></linearGradient><filter id="noise" x="0%" y="0%" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" stitchTiles="stitch" result="noise"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0" /></filter><mask id="mask"><rect width="1920" height="1080" fill="white" filter="url(%23noise)" opacity="0.05"/></mask><pattern id="pattern" patternUnits="userSpaceOnUse" width="600" height="600"><path d="M50,50 L150,250 L250,50" stroke="rgba(0,212,255,0.15)" stroke-width="2" fill="none" /><path d="M250,350 L350,150 L450,350" stroke="rgba(0,212,255,0.1)" stroke-width="2" fill="none" /><path d="M150,450 L250,250 L350,450" stroke="rgba(0,212,255,0.05)" stroke-width="2" fill="none" /></pattern></defs><rect width="1920" height="1080" fill="url(%23grad)" /><rect width="1920" height="1080" fill="url(%23pattern)" mask="url(%23mask)" /></svg>');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 2rem 0;
             position: relative;
             overflow: hidden;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><pattern id="buildings" patternUnits="userSpaceOnUse" width="400" height="200"><path d="M0,200 L50,180 L50,50 L100,50 L100,150 L150,120 L150,40 L200,40 L200,100 L250,80 L250,20 L300,20 L300,60 L350,40 L350,0 L400,0 L400,200 Z" fill="rgba(255,255,255,0.03)" /></pattern></defs><rect width="1920" height="1080" fill="url(%23buildings)" /></svg>');
+            opacity: 0.4;
+            transform: translateZ(-1px) scale(2);
         }
         
         .container {
@@ -63,6 +76,7 @@
             background: linear-gradient(90deg, white, var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
         
         h1 {
@@ -117,6 +131,25 @@
             cursor: pointer;
             margin-right: 1rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
         }
         
         .btn:hover {
@@ -137,6 +170,7 @@
         
         section {
             padding: 5rem 0;
+            position: relative;
         }
         
         .section-title {
@@ -169,10 +203,12 @@
         
         .card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            transform: translateY(0);
+            border: 1px solid rgba(0,0,0,0.03);
         }
         
         .card:hover {
@@ -184,10 +220,35 @@
             padding: 2rem;
         }
         
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 20%);
+        }
+        
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
+            background: rgba(0,212,255,0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         .stats {
@@ -195,6 +256,10 @@
             justify-content: space-between;
             margin: 3rem 0;
             flex-wrap: wrap;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
         }
         
         .stat-item {
@@ -202,6 +267,14 @@
             flex: 1;
             min-width: 200px;
             margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            background: rgba(0,212,255,0.05);
+            transform: translateY(-5px);
         }
         
         .stat-number {
@@ -209,6 +282,20 @@
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .stat-number::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 1.5px;
         }
         
         .timeline {
@@ -244,9 +331,15 @@
         .timeline-content {
             background: white;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .timeline-content:after {
@@ -259,6 +352,7 @@
             background: var(--secondary);
             border-radius: 50%;
             transform: translateY(-50%);
+            box-shadow: 0 0 0 5px rgba(0,212,255,0.2);
         }
         
         .timeline-item:nth-child(even) .timeline-content:after {
@@ -269,12 +363,17 @@
         .table-container {
             overflow-x: auto;
             margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
         }
         
         th, td {
@@ -288,8 +387,12 @@
             color: white;
         }
         
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
         tr:hover {
-            background-color: #f9f9f9;
+            background-color: rgba(0,212,255,0.05);
         }
         
         .pricing-table {
@@ -302,17 +405,20 @@
         
         .pricing-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             flex: 1;
             min-width: 300px;
             max-width: 400px;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .pricing-card:hover {
             transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            z-index: 2;
         }
         
         .pricing-header {
@@ -320,12 +426,27 @@
             color: white;
             padding: 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(rgba(255,255,255,0.1), transparent 70%);
+            transform: rotate(30deg);
         }
         
         .price {
             font-size: 3rem;
             font-weight: 700;
             margin: 1rem 0;
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-features {
@@ -361,12 +482,18 @@
         }
         
         .team-member {
-            background: rgb(33, 115, 183);
-            border-radius: 10px;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             width: 300px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         .team-photo {
@@ -380,6 +507,22 @@
             justify-content: center;
             font-size: 3rem;
             color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="35" r="20" fill="%230A2540"/><path d="M50,65 C34,65 20,75 20,90 L80,90 C80,75 66,65 50,65 Z" fill="%230A2540"/></svg>');
+            background-size: 80%;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.8;
         }
         
         .team-info {
@@ -396,15 +539,37 @@
             background: linear-gradient(135deg, var(--primary), var(--dark));
             color: white;
             padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .investment-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L0,100 Z" fill="rgba(0,212,255,0.03)"/><path d="M100,100 L0,100 L100,0 Z" fill="rgba(0,212,255,0.03)"/></svg>');
+            background-size: 30px;
+            opacity: 0.5;
         }
         
         .investment-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .investment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .investment-card h3 {
@@ -413,6 +578,8 @@
         
         .investment-highlight table {
             color: white;
+            background: transparent;
+            box-shadow: none;
         }
         
         .investment-highlight table td {
@@ -428,22 +595,62 @@
             color: white;
             padding: 3rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--gold), var(--accent), var(--secondary));
+            background-size: 300% 100%;
+            animation: gradient-slide 10s ease infinite;
+        }
+        
+        @keyframes gradient-slide {
+            0% {background-position: 0% 50%}
+            50% {background-position: 100% 50%}
+            100% {background-position: 0% 50%}
         }
         
         .contact-info {
             margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
             margin-bottom: 1rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .contact-icon {
             margin-right: 1rem;
             color: var(--secondary);
+            background: rgba(0,212,255,0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         @media (max-width: 768px) {
@@ -478,11 +685,28 @@
             .timeline-item:nth-child(even) .timeline-content:after {
                 left: -40px;
             }
+            
+            .pricing-card, .team-member {
+                width: 100%;
+            }
         }
         
         .gradient-section {
             background: linear-gradient(135deg, var(--primary), #0D366B);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
         }
         
         .gradient-section h2 {
@@ -515,11 +739,17 @@
         
         .financials-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .financials-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .financials-card h3 {
@@ -528,20 +758,359 @@
         
         .chart-container {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
             height: 400px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
         .investment-highlight .pricing-features li:before {
             color: var(--secondary);
         }
+        
+        /* New additions */
+        
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .image-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            aspect-ratio: 16/9;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(10,37,64,0.7) 0%, rgba(10,37,64,0) 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .image-container:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        /* Chat demo section */
+        .chat-demo {
+            position: relative;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f7f9fc, #e6eef7);
+            overflow: hidden;
+        }
+        
+        .chat-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%230A2540" opacity="0.1"/></svg>');
+            background-size: 30px;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--primary);
+            color: white;
+        }
+        
+        .chat-header-title {
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+        
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            max-width: 70%;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .message.ai {
+            align-self: flex-start;
+            background: #f1f1f1;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            margin: 0 2px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: typing-animation 1.5s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes typing-animation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #eee;
+            border-radius: 30px;
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .chat-input button {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .property-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .property-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .property-price {
+            position: right;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgb(83, 213, 245);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .property-content {
+            padding: 1.5rem;
+        }
+        
+        .property-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .property-location {
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .property-location::before {
+            content: '📍';
+            margin-right: 0.5rem;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .property-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .feature-label {
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        
+        .property-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .property-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .chat-btn {
+            background: var(--secondary);
+            color: var(--dark);
+            flex: 1;
+        }
+        
+        .chat-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .view-btn {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-right: 1rem;
+            flex: 1;
+        }
+        
+        .view-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .demo-image {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%23f7f9fc"/><rect x="50" y="50" width="700" height="150" rx="10" fill="%230A2540"/><rect x="80" y="100" width="300" height="20" rx="5" fill="white"/><rect x="80" y="140" width="200" height="15" rx="5" fill="rgba(255,255,255,0.7)"/><rect x="50" y="230" width="700" height="320" rx="10" fill="white"/><rect x="80" y="260" width="500" height="15" rx="5" fill="%23eee"/><rect x="80" y="290" width="450" height="15" rx="5" fill="%23eee"/><rect x="80" y="320" width="480" height="15" rx="5" fill="%23eee"/><rect x="80" y="360" width="200" height="40" rx="5" fill="%2300D4FF"/><text x="180" y="385" font-family="Arial" font-size="16" fill="%230A2540" text-anchor="middle">Chat with AI Agent</text><rect x="300" y="360" width="200" height="40" rx="5" fill="white" stroke="%230A2540"/><text x="400" y="385" font-family="Arial" font-size="16" fill="%230A2540" text-anchor="middle">Learn More</text></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
     <header>
+        <div class="parallax-bg"></div>
         <div class="container">
             <div class="header-content">
                 <div class="logo">ESTATE.AI</div>
@@ -557,16 +1126,29 @@
     
     <section id="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Our Vision</h2>
             </div>
-            <p>ESTATE.AI is pioneering the future of real estate transactions with our advanced AI-powered negotiation platform. Inspired by the groundbreaking AI performances at Christie's auction house in Portugal, we've developed a sophisticated chatbot that can manage the entire real estate sales process - from initial customer inquiries to final documentation.</p>
+            <p class="reveal-on-scroll">ESTATE.AI is pioneering the future of real estate transactions with our advanced AI-powered negotiation platform. Inspired by the groundbreaking AI performances at Christie's auction house in Portugal, we've developed a sophisticated chatbot that can manage the entire real estate sales process - from initial customer inquiries to final documentation.</p>
             
-            <p>Our platform not only reduces the need for human intervention in routine transactions but also enhances the customer experience by providing immediate, personalized responses 24/7. When human expertise is required, our AI seamlessly transitions to a real estate professional to finalize the sale.</p>
+            <p class="reveal-on-scroll">Our platform not only reduces the need for human intervention in routine transactions but also enhances the customer experience by providing immediate, personalized responses 24/7. When human expertise is required, our AI seamlessly transitions to a real estate professional to finalize the sale.</p>
             
-            <p>Starting in Dubai's dynamic real estate market, we're positioned to revolutionize how properties are bought and sold globally.</p>
+            <div class="image-grid reveal-on-scroll">
+                <div class="image-container" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"450\" viewBox=\"0 0 800 450\"><rect width=\"800\" height=\"450\" fill=\"%23f7f9fc\"/><rect x=\"40\" y=\"40\" width=\"720\" height=\"370\" rx=\"10\" fill=\"%230A2540\"/><rect x=\"80\" y=\"80\" width=\"400\" height=\"40\" rx=\"5\" fill=\"white\"/><rect x=\"80\" y=\"140\" width=\"350\" height=\"20\" rx=\"5\" fill=\"rgba(255,255,255,0.7)\"/><rect x=\"80\" y=\"170\" width=\"320\" height=\"20\" rx=\"5\" fill=\"rgba(255,255,255,0.5)\"/><rect x=\"80\" y=\"230\" width=\"150\" height=\"50\" rx=\"5\" fill=\"%2300D4FF\"/><text x=\"155\" y=\"262\" font-family=\"Arial\" font-size=\"16\" fill=\"%230A2540\" text-anchor=\"middle\">Get Started</text><rect x=\"250\" y=\"230\" width=\"150\" height=\"50\" rx=\"5\" fill=\"transparent\" stroke=\"white\"/><text x=\"325\" y=\"262\" font-family=\"Arial\" font-size=\"16\" fill=\"white\" text-anchor=\"middle\">Learn More</text><circle cx=\"600\" cy=\"200\" r=\"100\" fill=\"white\" opacity=\"0.1\"/><path d=\"M560,200 Q600,150 640,200 Q600,250 560,200 Z\" fill=\"white\" opacity=\"0.2\"/><circle cx=\"600\" cy=\"180\" r=\"15\" fill=\"white\" opacity=\"0.3\"/></svg>');">
+                    <div class="image-overlay">
+                        <h3>AI-Powered Real Estate Platform</h3>
+                    </div>
+                </div>
+                <div class="image-container" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"450\" viewBox=\"0 0 800 450\"><rect width=\"800\" height=\"450\" fill=\"%23f7f9fc\"/><rect x=\"40\" y=\"40\" width=\"720\" height=\"370\" rx=\"10\" fill=\"white\"/><rect x=\"80\" y=\"80\" width=\"400\" height=\"30\" rx=\"5\" fill=\"%230A2540\"/><rect x=\"80\" y=\"130\" width=\"200\" height=\"200\" rx=\"5\" fill=\"%230A2540\"/><rect x=\"300\" y=\"130\" width=\"200\" height=\"200\" rx=\"5\" fill=\"%230A2540\"/><path d=\"M180,180 L180,280 L130,230 Z\" fill=\"white\"/><circle cx=\"400\" cy=\"230\" r=\"30\" fill=\"white\"/><rect x=\"520\" y=\"130\" width=\"200\" height=\"200\" rx=\"5\" fill=\"%230A2540\"/><rect x=\"550\" y=\"180\" width=\"140\" height=\"15\" rx=\"5\" fill=\"white\"/><rect x=\"550\" y=\"210\" width=\"140\" height=\"15\" rx=\"5\" fill=\"white\"/><rect x=\"550\" y=\"240\" width=\"140\" height=\"15\" rx=\"5\" fill=\"white\"/><rect x=\"550\" y=\"270\" width=\"70\" height=\"30\" rx=\"5\" fill=\"%2300D4FF\"/></svg>');">
+                    <div class="image-overlay">
+                        <h3>24/7 Availability</h3>
+                    </div>
+                </div>
+            </div>
             
-            <div class="stats">
+            <p class="reveal-on-scroll">Starting in Dubai's dynamic real estate market, we're positioned to revolutionize how properties are bought and sold globally.</p>
+            
+            <div class="stats reveal-on-scroll">
                 <div class="stat-item">
                     <div class="stat-number">87%</div>
                     <div>Increase in Lead Conversion</div>
@@ -589,10 +1171,10 @@
     
     <section class="gradient-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>How ESTATE.AI Works</h2>
             </div>
-            <div class="grid">
+            <div class="grid reveal-on-scroll">
                 <div class="card">
                     <div class="card-content">
                         <div class="feature-icon">01</div>
@@ -641,11 +1223,13 @@
     
     <section id="market">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Market Opportunity</h2>
             </div>
-            <div class="grid">
+            <div class="grid reveal-on-scroll">
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><linearGradient id=\"skyGradient\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%230A2540;stop-opacity:1\" /><stop offset=\"100%\" style=\"stop-color:%230D366B;stop-opacity:1\" /></linearGradient><rect width=\"800\" height=\"300\" fill=\"url(%23skyGradient)\"/><rect x=\"50\" y=\"100\" width=\"100\" height=\"200\" fill=\"white\" opacity=\"0.9\"/><rect x=\"50\" y=\"110\" width=\"100\" height=\"10\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"50\" y=\"130\" width=\"100\" height=\"10\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"50\" y=\"150\" width=\"100\" height=\"10\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"170\" y=\"150\" width=\"80\" height=\"150\" fill=\"white\" opacity=\"0.8\"/><rect x=\"170\" y=\"160\" width=\"80\" height=\"10\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"170\" y=\"180\" width=\"80\" height=\"10\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"270\" y=\"80\" width=\"120\" height=\"220\" fill=\"white\" opacity=\"0.95\"/><rect x=\"270\" y=\"90\" width=\"120\" height=\"15\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"270\" y=\"115\" width=\"120\" height=\"15\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"270\" y=\"140\" width=\"120\" height=\"15\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"410\" y=\"120\" width=\"90\" height=\"180\" fill=\"white\" opacity=\"0.9\"/><rect x=\"410\" y=\"130\" width=\"90\" height=\"12\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"410\" y=\"152\" width=\"90\" height=\"12\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"520\" y=\"50\" width=\"150\" height=\"250\" fill=\"white\" opacity=\"1\"/><rect x=\"520\" y=\"65\" width=\"150\" height=\"18\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"520\" y=\"93\" width=\"150\" height=\"18\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"520\" y=\"121\" width=\"150\" height=\"18\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"690\" y=\"150\" width=\"60\" height=\"150\" fill=\"white\" opacity=\"0.7\"/><rect x=\"690\" y=\"160\" width=\"60\" height=\"8\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"690\" y=\"178\" width=\"60\" height=\"8\" fill=\"%230A2540\" opacity=\"0.2\"/><rect x=\"0\" y=\"300\" width=\"800\" height=\"100\" fill=\"%23f7f9fc\"/></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Dubai Real Estate Market</h3>
                         <p>Dubai's real estate market presents the ideal launch environment for ESTATE.AI:</p>
@@ -659,6 +1243,8 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><rect x=\"50\" y=\"50\" width=\"700\" height=\"300\" rx=\"10\" fill=\"white\"/><circle cx=\"150\" cy=\"150\" r=\"80\" fill=\"%230A2540\" opacity=\"0.8\"/><text x=\"150\" y=\"160\" font-family=\"Arial\" font-size=\"22\" fill=\"white\" text-anchor=\"middle\">GCC</text><circle cx=\"400\" cy=\"150\" r=\"100\" fill=\"%230A2540\" opacity=\"0.9\"/><text x=\"400\" y=\"160\" font-family=\"Arial\" font-size=\"24\" fill=\"white\" text-anchor=\"middle\">Europe</text><circle cx=\"650\" cy=\"150\" r=\"70\" fill=\"%230A2540\" opacity=\"0.7\"/><text x=\"650\" y=\"160\" font-family=\"Arial\" font-size=\"18\" fill=\"white\" text-anchor=\"middle\">N. America</text><circle cx=\"250\" cy=\"270\" r=\"60\" fill=\"%230A2540\" opacity=\"0.6\"/><text x=\"250\" y=\"275\" font-family=\"Arial\" font-size=\"16\" fill=\"white\" text-anchor=\"middle\">Asia</text><circle cx=\"550\" cy=\"270\" r=\"50\" fill=\"%230A2540\" opacity=\"0.5\"/><text x=\"550\" y=\"275\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"middle\">Global</text><path d=\"M150,150 L400,150\" stroke=\"%2300D4FF\" stroke-width=\"4\" stroke-dasharray=\"10 5\"/><path d=\"M400,150 L650,150\" stroke=\"%2300D4FF\" stroke-width=\"4\" stroke-dasharray=\"10 5\"/><path d=\"M400,150 L250,270\" stroke=\"%2300D4FF\" stroke-width=\"4\" stroke-dasharray=\"10 5\"/><path d=\"M400,150 L550,270\" stroke=\"%2300D4FF\" stroke-width=\"4\" stroke-dasharray=\"10 5\"/></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Global Expansion Potential</h3>
                         <p>After establishing in Dubai, ESTATE.AI will expand to:</p>
@@ -672,6 +1258,8 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><rect x=\"50\" y=\"50\" width=\"700\" height=\"300\" rx=\"10\" fill=\"white\"/><rect x=\"100\" y=\"100\" width=\"600\" height=\"30\" rx=\"5\" fill=\"%230A2540\"/><rect x=\"100\" y=\"150\" width=\"500\" height=\"30\" rx=\"5\" fill=\"%230A2540\" opacity=\"0.8\"/><rect x=\"100\" y=\"200\" width=\"400\" height=\"30\" rx=\"5\" fill=\"%230A2540\" opacity=\"0.6\"/><rect x=\"100\" y=\"250\" width=\"300\" height=\"30\" rx=\"5\" fill=\"%230A2540\" opacity=\"0.4\"/><rect x=\"100\" y=\"300\" width=\"200\" height=\"30\" rx=\"5\" fill=\"%230A2540\" opacity=\"0.2\"/><text x=\"710\" y=\"120\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"end\">ESTATE.AI</text><text x=\"610\" y=\"170\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"end\">Competitor A</text><text x=\"510\" y=\"220\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"end\">Competitor B</text><text x=\"410\" y=\"270\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"end\">Competitor C</text><text x=\"310\" y=\"320\" font-family=\"Arial\" font-size=\"14\" fill=\"white\" text-anchor=\"end\">Competitor D</text></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Competitive Advantage</h3>
                         <p>ESTATE.AI's unique positioning:</p>
@@ -688,13 +1276,92 @@
         </div>
     </section>
     
+    <section id="chat-integration" class="chat-demo">
+        <div class="container">
+            <div class="section-title reveal-on-scroll">
+                <h2>Seamless Website Integration</h2>
+            </div>
+            
+            <div class="demo-grid reveal-on-scroll">
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('dubaimarinaproperty.png')";></div>                        <div class="property-badge">Premium</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Luxury Marina Apartment</h3>
+                        <div class="property-price">€1,250,000</div>
+                        <div class="property-location">Dubai Marina, UAE</div>
+                        <div class="property-features">
+                            <div class="property-feature">
+                                <div class="feature-value">3</div>
+                                <div class="feature-label">Bedrooms</div>
+                            </div>
+                            <div class="property-feature">
+                                <div class="feature-value">2.5</div>
+                                <div class="feature-label">Bathrooms</div>
+                            </div>
+                            <div class="property-feature">
+                                <div class="feature-value">180 m²</div>
+                                <div class="feature-label">Area</div>
+                            </div>
+                        </div>
+                        <div class="property-actions">
+                            <div class="property-btn view-btn">View Details</div>
+                            <div class="property-btn chat-btn">Chat with AI Agent</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="logo">ESTATE.AI</div>
+                        <div class="chat-header-title">AI Property Assistant</div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message ai">
+                            Hello! I'm your AI property assistant. I see you're interested in the Luxury Marina Apartment. It's a beautiful 3-bedroom property with breathtaking views. How can I help you today?
+                        </div>
+                        <div class="message user">
+                            What's the price per square meter? And is there room for negotiation?
+                        </div>
+                        <div class="message ai">
+                            The property is priced at approximately €6,944 per square meter, which is competitive for Dubai Marina premium properties. Regarding negotiation, the seller has indicated some flexibility - potentially up to 5% off the listing price for a quick closing. Would you like to discuss specific terms or arrange a viewing?
+                        </div>
+                        <div class="message user">
+                            I'd be interested at €1.15M if we can close within 30 days. Is that possible?
+                        </div>
+                        <div class="message ai">
+                            That's an interesting offer. The €1.15M price point represents about an 8% discount, which is slightly above the indicated flexibility range. However, the 30-day closing timeline is very attractive to the seller.
+                            
+                            Let me contact them with this specific proposal and get back to you shortly. In the meantime, would you be able to provide some information about your financing situation to strengthen your offer?
+                        </div>
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type your message here...">
+                        <button>Send</button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="reveal-on-scroll" style="text-align: center; margin-top: 2rem; color: var(--text);">
+                Our AI assistant can be integrated directly into any real estate website, allowing potential buyers to engage immediately, get answers to their questions, and even begin negotiations - all without human intervention.
+            </p>
+        </div>
+    </section>
+    
     <section id="technology" class="gradient-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Technology & Innovation</h2>
             </div>
-            <div class="grid">
+            <div class="grid reveal-on-scroll">
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><rect x=\"50\" y=\"50\" width=\"700\" height=\"300\" rx=\"10\" fill=\"white\"/><rect x=\"100\" y=\"100\" width=\"600\" height=\"200\" rx=\"5\" fill=\"%23f0f0f0\"/><rect x=\"150\" y=\"150\" width=\"500\" height=\"100\" rx=\"5\" fill=\"%230A2540\"/><circle cx=\"200\" cy=\"200\" r=\"20\" fill=\"%2300D4FF\"/><circle cx=\"250\" cy=\"200\" r=\"20\" fill=\"%23FF5A5F\"/><circle cx=\"300\" cy=\"200\" r=\"20\" fill=\"%23FFCB46\"/><polyline points=\"350,220 400,180 450,210 500,170 550,200 600,160\" stroke=\"%2300D4FF\" stroke-width=\"5\" fill=\"none\"/><text x=\"150\" y=\"300\" font-family=\"Arial\" font-size=\"12\" fill=\"%230A2540\">AI Architecture</text></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Advanced AI Architecture</h3>
                         <p>Our platform utilizes a sophisticated multi-layered AI system:</p>
@@ -708,6 +1375,8 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><rect x=\"50\" y=\"50\" width=\"700\" height=\"300\" rx=\"10\" fill=\"white\"/><circle cx=\"400\" cy=\"200\" r=\"100\" fill=\"%230A2540\"/><text x=\"400\" y=\"210\" font-family=\"Arial\" font-size=\"24\" fill=\"white\" text-anchor=\"middle\">ESTATE.AI</text><circle cx=\"200\" cy=\"150\" r=\"60\" fill=\"%23eee\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><text x=\"200\" y=\"155\" font-family=\"Arial\" font-size=\"14\" fill=\"%230A2540\" text-anchor=\"middle\">CRM</text><circle cx=\"200\" cy=\"250\" r=\"60\" fill=\"%23eee\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><text x=\"200\" y=\"255\" font-family=\"Arial\" font-size=\"14\" fill=\"%230A2540\" text-anchor=\"middle\">Websites</text><circle cx=\"600\" cy=\"150\" r=\"60\" fill=\"%23eee\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><text x=\"600\" y=\"155\" font-family=\"Arial\" font-size=\"14\" fill=\"%230A2540\" text-anchor=\"middle\">Documents</text><circle cx=\"600\" cy=\"250\" r=\"60\" fill=\"%23eee\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><text x=\"600\" y=\"255\" font-family=\"Arial\" font-size=\"14\" fill=\"%230A2540\" text-anchor=\"middle\">Payments</text><path d=\"M315,200 L400,200\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><path d=\"M400,200 L485,200\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><path d=\"M400,115 L400,200\" stroke=\"%2300D4FF\" stroke-width=\"3\"/><path d=\"M400,200 L400,285\" stroke=\"%2300D4FF\" stroke-width=\"3\"/></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Seamless Integration</h3>
                         <p>ESTATE.AI integrates effortlessly with:</p>
@@ -721,6 +1390,8 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"400\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23f7f9fc\"/><rect x=\"50\" y=\"50\" width=\"700\" height=\"300\" rx=\"10\" fill=\"white\"/><rect x=\"100\" y=\"100\" width=\"600\" height=\"200\" rx=\"10\" fill=\"%230A2540\"/><rect x=\"150\" y=\"150\" width=\"500\" height=\"100\" rx=\"5\" fill=\"%23f0f0f0\"/><path d=\"M200,180 L220,220 L240,160 L260,200 L280,170 L300,190 L320,210 L340,150 L360,230 L380,180 L400,200 L420,170 L440,190 L460,210 L480,160 L500,190 L520,180 L540,200\" stroke=\"%2300D4FF\" stroke-width=\"3\" fill=\"none\"/><circle cx=\"400\" cy=\"320\" r=\"30\" fill=\"%23FF5A5F\"/><rect x=\"360\" y=\"310\" width=\"80\" height=\"20\" rx=\"5\" fill=\"white\"/><text x=\"400\" y=\"90\" font-family=\"Arial\" font-size=\"24\" fill=\"white\" text-anchor=\"middle\">Security Shield</text></svg>');">
+                    </div>
                     <div class="card-content">
                         <h3>Security & Compliance</h3>
                         <p>Our platform prioritizes security and regulatory compliance:</p>
@@ -739,10 +1410,10 @@
     
     <section id="revenue">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Revenue Model</h2>
             </div>
-            <div class="pricing-table">
+            <div class="pricing-table reveal-on-scroll">
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Subscription Model</h3>
@@ -800,10 +1471,10 @@
     
     <section id="financials" class="gradient-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Financial Projections</h2>
             </div>
-            <div class="financials-card">
+            <div class="financials-card reveal-on-scroll">
                 <h3>5-Year Revenue Forecast</h3>
                 <div class="table-container">
                     <table>
@@ -857,7 +1528,7 @@
                 </div>
             </div>
             
-            <div class="financials-card">
+            <div class="financials-card reveal-on-scroll">
                 <h3>Use of Investment Funds</h3>
                 <div class="table-container">
                     <table>
@@ -903,10 +1574,10 @@
     
     <section id="roadmap">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Growth Roadmap</h2>
             </div>
-            <div class="timeline">
+            <div class="timeline reveal-on-scroll">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Phase 1: Dubai Launch</h3>
@@ -973,10 +1644,10 @@
     
     <section id="team" class="gradient-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Leadership Team</h2>
             </div>
-            <div class="team">
+            <div class="team reveal-on-scroll">
                 <div class="team-member">
                     <div class="team-photo">CEO</div>
                     <div class="team-info">
@@ -1015,10 +1686,10 @@
     
     <section id="investment">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Investment Opportunity</h2>
             </div>
-            <div class="investment-highlight">
+            <div class="investment-highlight reveal-on-scroll">
                 <div class="container">
                     <div class="investment-card">
                         <h3>Offering Structure</h3>
@@ -1090,10 +1761,10 @@
     
     <section id="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal-on-scroll">
                 <h2>Contact Us</h2>
             </div>
-            <div class="contact-info">
+            <div class="contact-info reveal-on-scroll">
                 <div class="contact-item">
                     <div class="contact-icon">📧</div>
                     <div>invest@estate-ai.com</div>
@@ -1108,7 +1779,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="#" class="btn">Request Investment Deck</a>
+                <a href="#" class="btn reveal-on-scroll">Request Investment Deck</a>
             </div>
         </div>
     </section>
@@ -1120,5 +1791,80 @@
             <p>&copy; 2025 ESTATE.AI. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        // Reveal animations on scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal-on-scroll');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        // Initial check
+        revealOnScroll();
+        
+        // Chat demo interaction
+        const chatInput = document.querySelector('.chat-input input');
+        const chatButton = document.querySelector('.chat-input button');
+        const chatMessages = document.querySelector('.chat-messages');
+        const typingIndicator = document.querySelector('.typing-indicator');
+        
+        if (chatButton && chatInput) {
+            chatButton.addEventListener('click', () => {
+                const message = chatInput.value.trim();
+                
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.classList.add('message', 'user');
+                    userMessage.textContent = message;
+                    chatMessages.appendChild(userMessage);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Show typing indicator
+                    typingIndicator.style.display = 'flex';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Simulate AI response after delay
+                    setTimeout(() => {
+                        typingIndicator.style.display = 'none';
+                        
+                        const aiMessage = document.createElement('div');
+                        aiMessage.classList.add('message', 'ai');
+                        aiMessage.textContent = "I've received your message and will coordinate with our team to address your inquiry. Our AI system is designed to handle the entire negotiation process while ensuring you get the best possible deal. Would you like to schedule a property viewing or discuss specific terms?";
+                        chatMessages.appendChild(aiMessage);
+                        
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 2000);
+                }
+            });
+            
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    chatButton.click();
+                }
+            });
+        }
+        
+        // Property card interaction
+        const chatBtn = document.querySelector('.chat-btn');
+        if (chatBtn) {
+            chatBtn.addEventListener('click', () => {
+                document.querySelector('.chat-container').scrollIntoView({ behavior: 'smooth' });
+                chatInput.focus();
+            });
+        }
+    </script>
 </body>
 </html>
