@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTATE.AI | Investment Opportunity</title>
+    <style>
+        :root {
+            --primary: #0A2540;
+            --secondary: #00D4FF;
+            --accent: #FF5A5F;
+            --light: #F7F9FC;
+            --dark: #0A1929;
+            --text: #333F4D;
+            --gold: #CFB53B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 80vh;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, white, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .accent {
+            color: var(--accent);
+        }
+        
+        .gold {
+            color: var(--gold);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-right: 1rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            padding: 2rem 0;
+            position: relative;
+            width: 50%;
+            padding-right: 2rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-right: 0;
+            padding-left: 2rem;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            right: auto;
+            left: -10px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .pricing-header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pricing-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .pricing-footer {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+        
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .team-member {
+            background: rgb(33, 115, 183);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .team-info {
+            padding: 0 2rem 2rem;
+        }
+        
+        .team-position {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .investment-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .investment-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .investment-card h3 {
+            color: white;
+        }
+        
+        .investment-highlight table {
+            color: white;
+        }
+        
+        .investment-highlight table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .investment-highlight .pricing-features li {
+            color: white;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin: 2rem 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-right: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-content:after {
+                left: -40px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: -40px;
+            }
+        }
+        
+        .gradient-section {
+            background: linear-gradient(135deg, var(--primary), #0D366B);
+            color: white;
+        }
+        
+        .gradient-section h2 {
+            color: white;
+        }
+        
+        .gradient-section .section-title h2:after {
+            background: var(--secondary);
+        }
+        
+        .gradient-section h3 {
+            color: white;
+        }
+        
+        .gradient-section p {
+            color: white;
+        }
+        
+        .gradient-section .card {
+            color: var(--text);
+        }
+        
+        .gradient-section .card h3 {
+            color: var(--primary);
+        }
+        
+        .gradient-section .card p {
+            color: var(--text);
+        }
+        
+        .financials-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            color: var(--text);
+        }
+        
+        .financials-card h3 {
+            color: var(--primary);
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            height: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .investment-highlight .pricing-features li:before {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ESTATE.AI</div>
+                <h1>Revolutionary AI-Powered<br>Real Estate Negotiation Platform</h1>
+                <p>Transforming the real estate industry with cutting-edge AI technology that handles negotiations from initial inquiry to final sale, reducing human intervention and increasing conversion rates.</p>
+                <div>
+                    <a href="#investment" class="btn">Investment Opportunity</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Vision</h2>
+            </div>
+            <p>ESTATE.AI is pioneering the future of real estate transactions with our advanced AI-powered negotiation platform. Inspired by the groundbreaking AI performances at Christie's auction house in Portugal, we've developed a sophisticated chatbot that can manage the entire real estate sales process - from initial customer inquiries to final documentation.</p>
+            
+            <p>Our platform not only reduces the need for human intervention in routine transactions but also enhances the customer experience by providing immediate, personalized responses 24/7. When human expertise is required, our AI seamlessly transitions to a real estate professional to finalize the sale.</p>
+            
+            <p>Starting in Dubai's dynamic real estate market, we're positioned to revolutionize how properties are bought and sold globally.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">87%</div>
+                    <div>Increase in Lead Conversion</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div>Customer Engagement</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">65%</div>
+                    <div>Reduction in Administrative Costs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">92%</div>
+                    <div>Customer Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="gradient-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>How ESTATE.AI Works</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">01</div>
+                        <h3>Initial Engagement</h3>
+                        <p>Our AI chatbot engages with potential buyers in natural language, answering questions about properties and analyzing preferences.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">02</div>
+                        <h3>Negotiation Process</h3>
+                        <p>Using advanced algorithms, the AI negotiates prices, terms, and conditions with customers, adapting strategies based on real-time responses.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">03</div>
+                        <h3>Documentation Handling</h3>
+                        <p>The system prepares and processes necessary paperwork, ensuring compliance with local regulations while minimizing errors.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">04</div>
+                        <h3>Human Handoff</h3>
+                        <p>When needed, the AI seamlessly transitions to a human agent for complex situations or final closing details.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">05</div>
+                        <h3>Transaction Completion</h3>
+                        <p>The system finalizes the sale, coordinates with relevant parties, and ensures a smooth closing process.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon">06</div>
+                        <h3>Continuous Learning</h3>
+                        <p>Our AI continuously improves by learning from each transaction, adapting to market changes and customer preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="market">
+        <div class="container">
+            <div class="section-title">
+                <h2>Market Opportunity</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Dubai Real Estate Market</h3>
+                        <p>Dubai's real estate market presents the ideal launch environment for ESTATE.AI:</p>
+                        <ul class="pricing-features">
+                            <li>$82.7 billion in property transactions in 2023</li>
+                            <li>Growth rate of 12.4% annually</li>
+                            <li>Forward-thinking regulatory environment</li>
+                            <li>Tech-savvy population and business community</li>
+                            <li>Significant international investment base</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Global Expansion Potential</h3>
+                        <p>After establishing in Dubai, ESTATE.AI will expand to:</p>
+                        <ul class="pricing-features">
+                            <li>GCC countries (Saudi Arabia, Qatar, UAE)</li>
+                            <li>Major European markets (UK, Germany, Spain)</li>
+                            <li>North American urban centers</li>
+                            <li>Rapidly growing Asian markets</li>
+                            <li>Global market size exceeding $500B by 2027</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Competitive Advantage</h3>
+                        <p>ESTATE.AI's unique positioning:</p>
+                        <ul class="pricing-features">
+                            <li>First comprehensive AI negotiation system in real estate</li>
+                            <li>Full-cycle transaction capability vs. partial solutions</li>
+                            <li>Regulatory compliance built into the system</li>
+                            <li>Superior NLP and negotiation algorithms</li>
+                            <li>Early-mover advantage in key markets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="technology" class="gradient-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technology & Innovation</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Advanced AI Architecture</h3>
+                        <p>Our platform utilizes a sophisticated multi-layered AI system:</p>
+                        <ul class="pricing-features">
+                            <li>State-of-the-art natural language processing</li>
+                            <li>Proprietary negotiation algorithms</li>
+                            <li>Real-time market data integration</li>
+                            <li>Emotional intelligence capabilities</li>
+                            <li>Continuous learning through each transaction</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Seamless Integration</h3>
+                        <p>ESTATE.AI integrates effortlessly with:</p>
+                        <ul class="pricing-features">
+                            <li>Existing real estate agency websites</li>
+                            <li>CRM systems and property databases</li>
+                            <li>Document management systems</li>
+                            <li>Payment processing platforms</li>
+                            <li>Regulatory compliance systems</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Security & Compliance</h3>
+                        <p>Our platform prioritizes security and regulatory compliance:</p>
+                        <ul class="pricing-features">
+                            <li>End-to-end encryption for all communications</li>
+                            <li>Multi-factor authentication</li>
+                            <li>Compliance with international data protection laws</li>
+                            <li>Automatic updates for regulatory changes</li>
+                            <li>Regular security audits and penetration testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="revenue">
+        <div class="container">
+            <div class="section-title">
+                <h2>Revenue Model</h2>
+            </div>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Subscription Model</h3>
+                        <div class="price">€50,000</div>
+                        <div>Annual license per agency</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited AI negotiations</li>
+                        <li>Full documentation processing</li>
+                        <li>CRM integration</li>
+                        <li>24/7 customer support</li>
+                        <li>Monthly performance analytics</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <p>Our primary revenue stream, providing stable recurring income</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Transaction Fee Model</h3>
+                        <div class="price">0.5%</div>
+                        <div>Per successful transaction</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Alternative to annual subscription</li>
+                        <li>No upfront costs for agencies</li>
+                        <li>Fee only on successful sales</li>
+                        <li>Capped at €25,000 per transaction</li>
+                        <li>Volume discounts available</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <p>Performance-based option with high growth potential</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise Solutions</h3>
+                        <div class="price">Custom</div>
+                        <div>Tailored pricing</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Custom AI training for specific markets</li>
+                        <li>White-labeled solutions</li>
+                        <li>Multi-location deployment</li>
+                        <li>Advanced analytics and reporting</li>
+                        <li>Dedicated account management</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <p>High-value contracts with major real estate groups</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="financials" class="gradient-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Financial Projections</h2>
+            </div>
+            <div class="financials-card">
+                <h3>5-Year Revenue Forecast</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Clients</th>
+                                <th>Revenue (€M)</th>
+                                <th>EBITDA (€M)</th>
+                                <th>Margin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Year 1</td>
+                                <td>20</td>
+                                <td>1.0</td>
+                                <td>-0.5</td>
+                                <td>-50%</td>
+                            </tr>
+                            <tr>
+                                <td>Year 2</td>
+                                <td>75</td>
+                                <td>3.8</td>
+                                <td>0.9</td>
+                                <td>24%</td>
+                            </tr>
+                            <tr>
+                                <td>Year 3</td>
+                                <td>180</td>
+                                <td>9.0</td>
+                                <td>3.2</td>
+                                <td>36%</td>
+                            </tr>
+                            <tr>
+                                <td>Year 4</td>
+                                <td>450</td>
+                                <td>22.5</td>
+                                <td>9.0</td>
+                                <td>40%</td>
+                            </tr>
+                            <tr>
+                                <td>Year 5</td>
+                                <td>850</td>
+                                <td>42.5</td>
+                                <td>19.1</td>
+                                <td>45%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="financials-card">
+                <h3>Use of Investment Funds</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Allocation</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>R&D</td>
+                                <td>35%</td>
+                                <td>AI development, algorithm enhancement, new features</td>
+                            </tr>
+                            <tr>
+                                <td>Marketing & Sales</td>
+                                <td>30%</td>
+                                <td>Market penetration in Dubai, brand development, sales team</td>
+                            </tr>
+                            <tr>
+                                <td>Operations</td>
+                                <td>20%</td>
+                                <td>Office setup in Dubai, legal compliance, administrative costs</td>
+                            </tr>
+                            <tr>
+                                <td>Talent Acquisition</td>
+                                <td>10%</td>
+                                <td>Hiring key personnel in AI, real estate, and business development</td>
+                            </tr>
+                            <tr>
+                                <td>Working Capital</td>
+                                <td>5%</td>
+                                <td>Cash reserves for unexpected expenses and opportunities</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Growth Roadmap</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 1: Dubai Launch</h3>
+                        <p><strong>Months 1-6</strong></p>
+                        <ul class="pricing-features">
+                            <li>Incorporation in Dubai</li>
+                            <li>Office establishment</li>
+                            <li>Onboarding first 10 agencies</li>
+                            <li>Platform refinement based on initial feedback</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 2: UAE Expansion</h3>
+                        <p><strong>Months 7-12</strong></p>
+                        <ul class="pricing-features">
+                            <li>Expansion to Abu Dhabi and Sharjah</li>
+                            <li>Enhanced language capabilities (Arabic)</li>
+                            <li>Integration with UAE property databases</li>
+                            <li>Development of mobile application</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 3: GCC Market Entry</h3>
+                        <p><strong>Year 2</strong></p>
+                        <ul class="pricing-features">
+                            <li>Expansion to Saudi Arabia and Qatar</li>
+                            <li>Strategic partnerships with major property developers</li>
+                            <li>Enhanced market-specific AI training</li>
+                            <li>Series A funding round</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 4: European Entry</h3>
+                        <p><strong>Year 3</strong></p>
+                        <ul class="pricing-features">
+                            <li>Launch in key European markets</li>
+                            <li>Compliance with GDPR and local regulations</li>
+                            <li>Multilingual platform expansion</li>
+                            <li>Enhanced documentation processing capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 5: Global Scale</h3>
+                        <p><strong>Years 4-5</strong></p>
+                        <ul class="pricing-features">
+                            <li>Expansion to North America and Asia</li>
+                            <li>Advanced AI features including predictive analytics</li>
+                            <li>Integration with smart contracts and blockchain</li>
+                            <li>Potential IPO or strategic acquisition</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="team" class="gradient-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Leadership Team</h2>
+            </div>
+            <div class="team">
+                <div class="team-member">
+                    <div class="team-photo">CEO</div>
+                    <div class="team-info">
+                        <h3>Founder & CEO</h3>
+                        <div class="team-position">Visionary & AI Entrepreneur</div>
+                        <p>15+ years in real estate and technology ventures with multiple successful exits. Pioneer in applying AI to traditional industries.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">CTO</div>
+                    <div class="team-info">
+                        <h3>Chief Technology Officer</h3>
+                        <div class="team-position">AI & Machine Learning Expert</div>
+                        <p>PhD in Machine Learning with expertise in NLP. Previously led AI development at major tech companies with focus on conversational systems.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">COO</div>
+                    <div class="team-info">
+                        <h3>Chief Operating Officer</h3>
+                        <div class="team-position">Real Estate Operations Veteran</div>
+                        <p>20+ years in luxury real estate operations across MENA region. Expert in regulatory compliance and transaction management.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">CMO</div>
+                    <div class="team-info">
+                        <h3>Chief Marketing Officer</h3>
+                        <div class="team-position">PropTech Marketing Strategist</div>
+                        <p>Extensive experience in B2B SaaS marketing with specific focus on real estate technology. Previously scaled multiple startups to market leadership.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="investment">
+        <div class="container">
+            <div class="section-title">
+                <h2>Investment Opportunity</h2>
+            </div>
+            <div class="investment-highlight">
+                <div class="container">
+                    <div class="investment-card">
+                        <h3>Offering Structure</h3>
+                        <div class="table-container">
+                            <table>
+                                <tr>
+                                    <td><strong>Total Raising:</strong></td>
+                                    <td>€800,000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Shares Available:</strong></td>
+                                    <td>4 shares at €200,000 each</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Equity Per Share:</strong></td>
+                                    <td>7.5% per share (30% total offered)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pre-Money Valuation:</strong></td>
+                                    <td>€1,866,667</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Post-Money Valuation:</strong></td>
+                                    <td>€2,666,667</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-card">
+                        <h3>Return Potential</h3>
+                        <div class="table-container">
+                            <table>
+                                <tr>
+                                    <td><strong>Projected Exit Valuation (Year 5):</strong></td>
+                                    <td>€190-230 million</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Based on:</strong></td>
+                                    <td>10-12x EBITDA multiple</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Return Multiple on Investment:</strong></td>
+                                    <td>35-42x (7.5% equity)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>IRR:</strong></td>
+                                    <td>105-110%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-card">
+                        <h3>Why Invest Now</h3>
+                        <ul class="pricing-features">
+                            <li>Early-stage opportunity in rapidly evolving AI real estate tech</li>
+                            <li>First-mover advantage in untapped market</li>
+                            <li>Working product with proven technology</li>
+                            <li>Dubai market provides ideal testing ground with wealthy clientele</li>
+                            <li>Clear path to profitability and exit opportunities</li>
+                            <li>Experienced founding team with industry expertise</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>invest@estate-ai.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>+971 50 123 4567</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>Dubai Internet City, Building 12, Office 305</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn">Request Investment Deck</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="logo">ESTATE.AI</div>
+            <p>Transforming Real Estate Transactions Through Artificial Intelligence</p>
+            <p>&copy; 2025 ESTATE.AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
